@@ -1,0 +1,65 @@
+{
+    "title": "Clean Blog",
+    "name": "startbootstrap-clean-blog",
+    "version": "6.0.7",
+    "scripts": {
+        "start": "cross-env NODE_ENV=development NODE_PATH=./node_modules npm run watch & npm run serve",
+        "build": "cross-env NODE_ENV=production node metalsmith.js",
+        "watch": "nodemon metalsmith.js",
+        "serve": "live-server --wait=200 ./dist/",
+        "start:debug": "cross-env NODE_ENV=development DEBUG=* node metalsmith && serve -l 5000 dist"
+    },
+    "nodemonConfig": {
+        "watch": [
+            "src"
+        ],
+        "ext": "js scss pug json html md"
+    },
+    "description": "Clean Blog is a Medium inspired blog theme for Bootstrap.",
+    "keywords": [
+        "css",
+        "sass",
+        "html",
+        "responsive",
+        "theme",
+        "template"
+    ],
+    "homepage": "https://startbootstrap.com/theme/clean-blog",
+    "bugs": {
+        "url": "https://github.com/StartBootstrap/startbootstrap-clean-blog/issues",
+        "email": "feedback@startbootstrap.com"
+    },
+    "license": "MIT",
+    "author": "Start Bootstrap",
+    "contributors": [
+        "David Miller (https://davidmiller.io/)"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/StartBootstrap/startbootstrap-clean-blog.git"
+    },
+    "dependencies": {
+        "bootstrap": "5.1.3"
+    },
+    "devDependencies": {
+        "@metalsmith/collections": "^1.2.1",
+        "@metalsmith/drafts": "^1.1.1",
+        "@metalsmith/layouts": "^2.4.0",
+        "@metalsmith/markdown": "^1.4.0",
+        "@metalsmith/postcss": "^5.0.0",
+        "@metalsmith/sass": "^1.0.0",
+        "autoprefixer": "10.3.7",
+        "browser-sync": "^2.27.10",
+        "cross-env": "^7.0.3",
+        "cssnano": "^5.0.17",
+        "jstransformer-pug": "^0.4.0",
+        "live-server": "^1.2.2",
+        "luxon": "^3.1.1",
+        "metalsmith": "^2.4.2",
+        "nodemon": "^2.0.20",
+        "npm": "^9.1.2",
+        "postcss": "8.3.9",
+        "prettier": "2.4.1",
+        "serve": "^14.1.2"
+    }
+}

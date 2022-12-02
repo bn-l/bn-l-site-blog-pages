@@ -1,0 +1,176 @@
+// Global CSS
+@import './global';
+
+$eerie: rgba(20, 20, 20, 1);
+$midnight: rgba(11, 57, 72, 1);
+$bole: rgba(120, 79, 65, 1);
+$glossy: rgba(167, 153, 183, 1);
+$turquoise: rgba(184, 213, 184, 1);
+
+$eerie2: rgba(20, 20, 20, 1);
+$midnight2: rgba(30, 42, 52, 1);
+$bole2: rgba(118, 75, 66, 1);
+$glossy2: rgba(171, 154, 174, 1);
+$turquoise2: rgba(194, 205, 185, 1);
+
+$burgundy: rgba(74, 59, 59, 1);
+$pink: rgba(145, 115, 120, 1);
+$silver: rgba(183, 180, 180, 1);
+
+$bole3: rgba(118, 75, 66, 0.393);
+
+body {
+    background-color: rgb(255, 255, 255);
+    color: $eerie;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (min-width: 380px) {
+ body {
+    margin: 2em 2em;
+ }
+}
+@media (min-width: 768px) {
+ body {
+    margin: 3em 10em;
+ }
+}
+@media (min-width: 1000px) {
+ body {
+    margin: 3em 12em;
+ }
+}
+@media (min-width: 1200px) {
+ body {
+    margin: 3em 20em;
+ }
+}
+@media (min-width: 1400px) {
+ body {
+    margin: 3em 27em;
+ }
+}
+
+.masthead {
+    
+}
+.masthead .page-title {
+
+}
+.masthead .page-tag-line {
+
+}
+.masthead .page-description {
+    color: red;
+}
+
+
+.nav-container {
+
+}
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.nav-item {
+    padding-right: 1em;
+}
+.nav-link {
+
+}
+
+
+.main-container {
+
+}
+
+.posts-list {
+
+}
+
+.posts-list .year {
+
+}
+.posts-list .year-heading {
+    font-weight: bold;
+    font-family: monospace;
+}
+.posts-list .year-list {
+    margin-left: 2em;
+}
+
+.posts-list .post-preview {
+    border-bottom: 1px solid;
+    padding-bottom: 1em;
+    margin-bottom: 2em;
+}
+.posts-list .post-preview .post-link {
+    text-decoration: none;
+    margin-bottom: 1em;
+    display: block;
+    color: $eerie;
+}
+
+.posts-list .post-preview .heading {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0.67em;
+    font-weight: bold;
+    font-family: monospace;
+}
+.posts-list .post-preview .description {
+    padding: 0;
+    margin: 0;
+    color: black;
+    color: $midnight;
+}
+.post-list .post-preview .date-line {
+   
+}
+.posts-list .post-preview .date-line .author-name {
+
+}
+.posts-list .post-preview .date-line .author-link {
+
+}
+.posts-list .post-preview .date-line .date-time {
+
+}
+
+.post {
+
+}
+.post .title {
+    font-size: 5ch;
+    font-weight: lighter;
+    color: $midnight;
+    padding-bottom: 0.5ex;
+    text-transform: capitalize;
+}
+.post .body {
+
+}
+
+.post .body h1::before, .post .body h2::before, .post .body h3::before, .post .body h4::before, .post .body h5::before, .post .body h6::before {
+    content: "-";
+}
+.post .body h1, .post .body h2, .post .body h3, .post .body h4, .post .body h5, .post .body h6 {
+    font-weight: bold;
+    font-family: monospace;
+    margin-bottom: 1em;
+}
+.post .body .link {
+
+}
+.post .body .image {
+
+}
+
+
+
+footer {
+    color: $silver;
+}

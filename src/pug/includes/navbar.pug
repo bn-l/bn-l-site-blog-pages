@@ -1,0 +1,6 @@
+// Navigation
+nav.nav-container
+    ul.nav-list
+        each navitem in nav
+            li.nav-item
+                a.nav-link(href=`${site.base}/${navitem.path}`) #{navitem.label}

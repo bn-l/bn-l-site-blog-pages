@@ -1,0 +1,33 @@
+extends base-layout.pug
+
+//- is this necessary?
+//- include includes/scripts.pug 
+
+//- NB: Replaces the "block main" part in base-layout.pug
+//- from pug docs "The object or array to iterate over is just plain JavaScript. So, it can be a variable, or the result of a function call, or almost anything else."
+//- note: posts are grouped by year
+
+
+
+block main
+    - var groupBy = (x,f)=>x.reduce((a,b,i)=>((a[f(b,i,x)]||=[]).push(b),a),{})
+    - var postsByYear = groupBy(collections.posts, posts => posts.year)
+
+    div.posts-list 
+        each year, index in Object.keys(postsByYear).reverse()
+            .year
+                h2.year-heading= year
+                .year-list
+                    each post, index in postsByYear[year]
+                        .post-preview
+                            a(href=post.path).post-link
+                                h3.heading #{post.title}
+                                .description #{post.description}
+                            .date-line
+                                | Posted by 
+                                a(href=`${site.base}/about.html`).author-link #{post.author}
+                                |  on 
+                                time(datetime=post.isoDate).date-time= post.displayDate
+
+
+        

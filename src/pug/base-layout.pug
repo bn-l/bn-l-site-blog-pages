@@ -1,0 +1,19 @@
+doctype html
+//- NOTE: Metalsmith processes the markdown files using this template. It process each file and renders the template using the MD file's relative path (e.g. src/posts will be built as dist/posts/). The "contents" variable given to pug (see below) and is in this default page's namespace. 
+
+html(lang='en')
+
+    include includes/header.pug
+
+
+    body
+
+        include includes/masthead.pug
+        include includes/navbar.pug
+
+        .main-container
+                block main               
+        
+        include includes/footer.pug
+        
+        include includes/scripts.pug

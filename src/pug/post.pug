@@ -1,0 +1,7 @@
+extends base-layout.pug
+
+//- NB: Replaces the "block main" part in base-layout.pug
+block main
+    div.post 
+        .title= title
+        .body !{contents}
