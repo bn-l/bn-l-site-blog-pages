@@ -5,7 +5,7 @@ This starting base is basically completely unstyled and can be adapted or used a
 
 <br />
 
-![clean blog screen shot](./docs/screen-shot-clean-blog.png)
+![clean blog screen shot](./screen-shot-clean-blog.png)
 
 <!-- <video src="./docs/screen-capture-clean-blog.mp4"> -->
 

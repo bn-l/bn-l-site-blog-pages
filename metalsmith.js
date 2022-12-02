@@ -57,7 +57,7 @@ function noop() {}
 Metalsmith(__dirname)
   .clean(true)
   .source('src/content')
-  .destination('site')
+  .destination('docs')
   .metadata(sitedata)
   .use(dev ? noop : drafts())
   .use(markdown())
