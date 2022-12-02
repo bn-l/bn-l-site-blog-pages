@@ -10,7 +10,7 @@ const DateTime = require("luxon").DateTime
 
 const sitedata = {
   site: {
-    base: 'http://127.0.0.1:8080',
+    base: dev ? "http://127.0.0.1:8080" : "https://bn-l.github.io/bn-l-site-blog-pages/",
     subject: 'bn-l',
     author: 'bn-l'
   },
