@@ -51,6 +51,7 @@ function formattedDatesForPosts(files, metalsmith) {
 
 }
 
+// so any small change means I need to redo the setting?
 
 function noop() {}
 
