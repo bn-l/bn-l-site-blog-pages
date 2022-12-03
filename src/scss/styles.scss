@@ -153,6 +153,12 @@ body {
 .post .body {
 
 }
+.post .body p {
+    margin: 1.8em 0;
+}
+.post .body img {
+    width: 100%;
+}
 
 .post .body h1::before, .post .body h2::before, .post .body h3::before, .post .body h4::before, .post .body h5::before, .post .body h6::before {
     content: "-";

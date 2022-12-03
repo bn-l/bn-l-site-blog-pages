@@ -24,8 +24,9 @@ block main
                                 h3.heading #{post.title}
                                 .description #{post.description}
                             .date-line
-                                | Posted by 
-                                a(href=`${site.base}/about.html`).author-link #{post.author}
+                                | Posted 
+                                //- | by 
+                                //- a(href=`${site.base}/about.html`).author-link #{post.author}
                                 |  on 
                                 time(datetime=post.isoDate).date-time= post.displayDate
 

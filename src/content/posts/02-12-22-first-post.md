@@ -1,7 +1,7 @@
 ---
 title: The first post
 description: My initial post to this blog
-author: bn-l
+# author: bn-l
 # featured_image: /assets/img/post-bg.jpg
 draft: false
 date: 02-12-22
