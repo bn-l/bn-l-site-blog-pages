@@ -2,8 +2,10 @@
 title: Setting up this blog using metalsmith
 description: Metalsmith.js is a static pages library. I'm using it to convert markdown files to html. Pretty cool.
 date: 03-12-22
+updated: 08-12-22
 draft: false
 page_type: post
+permalink: "posts/setting-up-this-blog-using-metalsmith"
 ---
 
 Metalsmith is a static site building that will transform static files for you. It uses express.js style ".use()" syntax which is quite nice.
@@ -13,8 +15,6 @@ The workflow is rather smooth. You can use your editor of choice (e.g. a desktop
 ![](assets/img/2022-12-03-03-28-04-image.png)
 
 The lighter colored block of code is "front matter" a markdown extension for file metadata. Here I'm using it for the post metadata. Metalsmith takes this and injects it into the templates which is very cool. 
-
-
 
 I made a few changes to the metalsmith default dev environment so that when templates (here pug) or scss is modified, metalsmith will rebuild and the dev server will hot reload the changes (no need to press refresh on the browser).  This is the way I modified my npm scripts in package.json:
 
@@ -34,4 +34,12 @@ I made a few changes to the metalsmith default dev environment so that when temp
     },
 ```
 
-That's it. I can recommend it. Next post: Setting up github pages with a custom domain.
+That's it. :thumbsup:
+
+Next post: Setting up github pages with a custom domain.
+
+But first: [Part 2](/posts/setting-up-this-blog-using-metalsmith-part-2)
+
+::: update
+Update 08/12/22: I should say I can't recommend this though unless you specifically want the customizability that metalsmith may offer. You're probably better off [using Jekyll with github pages](https://www.markdownguide.org/tools/github-pages/) and choosing a nice theme. 
+:::

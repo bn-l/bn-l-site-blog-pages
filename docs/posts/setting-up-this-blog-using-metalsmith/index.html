@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="Metalsmith.js is a static pages library. I'm using it to convert markdown files to html. Pretty cool."><meta name="author"><title>Setting up this blog using metalsmith - bn-l</title><link rel="icon" type="image/x-icon" href="http://127.0.0.1:8080/assets/favicon.ico"><link href="http://127.0.0.1:8080/css/styles.css" rel="stylesheet"><link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" rel="stylesheet"><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script><script src="/index.js" defer></script></head><body><header class="masthead"><h1 class="page-title">Setting up this blog using metalsmith</h1><p class="site-tag-line"></p></header><!-- Navigation--><nav class="nav-container"><ul class="nav-list"><li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8080/">Home</a></li><li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8080/about">About</a></li><li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8080/contact">Contact</a></li></ul></nav><div class="main-container"><div class="post"> <div class="title">Setting up this blog using metalsmith</div><div class="date">Posted: 03-12-22</div><div class="updated">Updated:08-12-22</div><div class="body"><p>Metalsmith is a static site building that will transform static files for you. It uses express.js style &quot;.use()&quot; syntax which is quite nice.</p>
+<p>The workflow is rather smooth. You can use your editor of choice (e.g. a desktop app) to create the markdown which gives a great UI experience entirely for free and without any vendor lockdown. I'm using a custom fork of <a href="https://github.com/bn-l/marktext">MarkText</a> and it's great:</p>
+<p><img src="assets/img/2022-12-03-03-28-04-image.png" alt=""></p>
+<p>The lighter colored block of code is &quot;front matter&quot; a markdown extension for file metadata. Here I'm using it for the post metadata. Metalsmith takes this and injects it into the templates which is very cool.</p>
+<p>I made a few changes to the metalsmith default dev environment so that when templates (here pug) or scss is modified, metalsmith will rebuild and the dev server will hot reload the changes (no need to press refresh on the browser).  This is the way I modified my npm scripts in package.json:</p>
+<pre><code class="language-json">    &quot;scripts&quot;: {
+        &quot;start&quot;: &quot;cross-env NODE_ENV=development NODE_PATH=./node_modules npm run watch &amp; npm run serve&quot;,
+        &quot;build&quot;: &quot;cross-env NODE_ENV=production node metalsmith.js&quot;,
+        &quot;watch&quot;: &quot;cross-env NODE_ENV=development nodemon metalsmith.js&quot;,
+        &quot;serve&quot;: &quot;live-server --wait=200 ./docs/&quot;,
+        &quot;start:debug&quot;: &quot;cross-env NODE_ENV=development DEBUG=* node metalsmith &amp;&amp; serve -l 5000 dist&quot;
+    },
+    &quot;nodemonConfig&quot;: {
+        &quot;watch&quot;: [
+            &quot;src&quot;
+        ],
+        &quot;ext&quot;: &quot;js scss pug json html md&quot;
+    },
+</code></pre>
+<p>That's it. 👍</p>
+<p>Next post: Setting up github pages with a custom domain.</p>
+<p>But first: <a href="/posts/setting-up-this-blog-using-metalsmith-part-2">Part 2</a></p>
+<div class="update">
+<p>Update 08/12/22: I should say I can't recommend this though unless you specifically want the customizability that metalsmith may offer. You're probably better off <a href="https://www.markdownguide.org/tools/github-pages/">using Jekyll with github pages</a> and choosing a nice theme.</p>
+</div>
+</div></div></div><!-- Footer--><footer> Copyright &copy; bn-l 2022</footer><!-- Core theme JS--><script>hljs.highlightAll();</script></body></html>

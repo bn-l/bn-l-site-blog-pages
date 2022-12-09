@@ -144,12 +144,29 @@ body {
 
 }
 .post .title {
-    font-size: 5ch;
+    font-size: 2.5em;
     font-weight: lighter;
     color: $midnight;
     padding-bottom: 0.5ex;
     text-transform: capitalize;
 }
+
+@mixin date-style {
+    padding: 0.5em 0;
+}
+.post .date {
+    @include date-style;
+}
+.post .updated {
+    @include date-style;
+    color: #546b94;
+    padding: 0.5em 0;
+    font-weight: bold;
+}
+.post .updated::before {
+    content: "❗ ";
+}
+
 .post .body {
 
 }
@@ -159,9 +176,15 @@ body {
 .post .body img {
     width: 100%;
 }
+.post .body ul {
+
+}
+.post .body li {
+    padding: 0.3em 0;
+}
 
 .post .body h1::before, .post .body h2::before, .post .body h3::before, .post .body h4::before, .post .body h5::before, .post .body h6::before {
-    content: "-";
+    content: "> ";
 }
 .post .body h1, .post .body h2, .post .body h3, .post .body h4, .post .body h5, .post .body h6 {
     font-weight: bold;
@@ -175,8 +198,54 @@ body {
 
 }
 
+@mixin infobox {
+    padding-left: 2%;
+    padding-right: 2%;
+    // border-left: 1px black solid;
+    // border-right: 1px black solid;
+    border: 1px black solid;
+    // color: rgba(11, 57, 72, 1);
+    margin: 1em 0;
+}
 
+.post .body .update {
+    @include infobox;
+    background: #fff7c32b;
+}
+.post .body .info {
+    @include infobox;
+    background: #c3c6ff2b;
+}
+.post .body .summary {
+    @include infobox;
+    background: #c3ffdd2b;
+}
+
+.post .body .update p, .post .body .info p, .post .body .summary p {
+    margin: 1em 0;  
+}
+
+.post .body .footnotes-sep {
+    margin-top: 3.5em;
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+
+.post .body .footnotes {
+
+}
+.post .body .footnotes p {
+    margin: 0.1em 0;
+}
+.post .body .footnotes-list {
+
+}
+.post .body .footnotes-item {
+
+}
 
 footer {
+    margin: 2em 0;
     color: $silver;
 }

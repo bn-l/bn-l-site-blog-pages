@@ -23,12 +23,7 @@ block main
                             a(href=post.path).post-link
                                 h3.heading #{post.title}
                                 .description #{post.description}
-                            .date-line
-                                | Posted 
-                                //- | by 
-                                //- a(href=`${site.base}/about.html`).author-link #{post.author}
-                                |  on 
-                                time(datetime=post.isoDate).date-time= post.displayDate
+                            .date-line= DateTime.fromMillis(parseInt(post.timestamp)).toFormat("cccc dd, LLLL")
 
 
         

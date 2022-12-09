@@ -1,12 +1,16 @@
 const Metalsmith = require('metalsmith')
 const drafts = require('@metalsmith/drafts')
 const layouts = require('@metalsmith/layouts')
-const markdown = require('@metalsmith/markdown')
+// const markdown = require('@metalsmith/markdown')
 const sass = require('@metalsmith/sass')
 const collections = require('@metalsmith/collections')
 const postcss = require('@metalsmith/postcss')
 const dev = process.env.NODE_ENV === 'development'
 const DateTime = require("luxon").DateTime
+const markdown = require('metalsmith-markdownit')
+const emoji = require('markdown-it-emoji');
+const permalinks = require('@metalsmith/permalinks')
+const jsBundle = require('@metalsmith/js-bundle')
 
 const sitedata = {
   site: {
@@ -15,13 +19,14 @@ const sitedata = {
     author: 'bn-l'
   },
   nav: [
-    {path: 'index.html', label: 'Home'},
-    {path: 'about.html', label: 'About'},
-    {path: 'contact.html', label: 'Contact'}
+    {path: '', label: 'Home'},
+    {path: 'about', label: 'About'},
+    {path: 'contact', label: 'Contact'}
   ],
   socials: {
     github: 'https://github.com/bn-l'
-  }
+  },
+  DateTime: DateTime
 }
 
 function formatDate(value, format) {
@@ -31,6 +36,8 @@ function formatDate(value, format) {
     return dt.toISOString();
   } else if (format === 'year') {
     return dt.getFullYear();
+  } else if (format === 'timestamp') {
+    return dt.getTime();
   }
   const utc = dt.toUTCString().match(/(\d{1,2}) (.*) (\d{4})/)
   // returns: Mmm, dd, yyyy 
@@ -42,10 +49,14 @@ function formattedDatesForPosts(files, metalsmith) {
     if (post.date) {
       // modifies the "collection" object directly 
       post.displayDate = formatDate(post.date)
-      // e.g.: Mmm, dd, yyyy 
+      // e.g.: Mmm, dd, yyyy
       post.isoDate = formatDate(post.date, 'iso')
       // e.g.: 2022-11-30T04:02:13.964Z
       post.year = formatDate(post.date, 'year')
+      post.timestamp = formatDate(post.date, 'timestamp')
+      if (post.updated) {
+        post.updatedTimestamp  = formatDate(post.updated, 'timestamp')
+      }
     }
   })
 
@@ -55,13 +66,24 @@ function formattedDatesForPosts(files, metalsmith) {
 
 function noop() {}
 
+var md = markdown({html: true});
+md.parser
+  .use(require('markdown-it-emoji'))
+  .use(require('markdown-it-abbr'))
+  .use(require('markdown-it-footnote'))
+  .use(require('markdown-it-container'), "update")
+  .use(require('markdown-it-container'), "info")
+  .use(require('markdown-it-container'), "summary")
+
+
 Metalsmith(__dirname)
   .clean(true)
   .source('src/content')
   .destination('docs')
   .metadata(sitedata)
   .use(dev ? noop : drafts())
-  .use(markdown())
+  .use(md)
+  .use(permalinks())
   .use(collections({
     posts: {
       pattern: 'posts/**/*.html',
@@ -72,13 +94,24 @@ Metalsmith(__dirname)
   .use(formattedDatesForPosts)
   .use(layouts({
     directory: 'src/pug',
-    default: 'post.pug'
+    default: 'post.pug',
+    pattern: '**/*.html'
   }))
   .use(sass({
     entries: {
       'src/scss/styles.scss' : 'css/styles.css'
     }
   }))
+  .use(
+    jsBundle({
+      entries: {
+        index: 'src/scripts/index.js'
+      },
+      minify: !dev,
+      sourcemap: dev,
+      drop: !dev ? ['console', 'debugger'] : []
+    })
+  )
   .use(dev ? postcss({
     plugins: [
       'autoprefixer',

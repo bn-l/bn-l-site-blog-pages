@@ -4,3 +4,8 @@ nav.nav-container
         each navitem in nav
             li.nav-item
                 a.nav-link(href=`${site.base}/${navitem.path}`) #{navitem.label}
+        //- button#darkbutton Toggle dark mode
+        //- if darkmode 
+        //-     p.emojiMode 🌚
+        //- else 
+        //-     p.emojiMode 🌞
