@@ -4,7 +4,7 @@ extends base-layout.pug
 //- NB: Replaces the "block main" part in base-layout.pug
 block main
     div.post 
-        .title= title
+        //- .title= title
         if date
             .date= "Posted: " + DateTime.fromMillis(parseInt(timestamp)).toFormat("dd-LL-yy")
         if updated
