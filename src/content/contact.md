@@ -5,4 +5,4 @@ description: A contact page
 page_type: page
 ---
 
-Please discuss at: https://github.com/bn-l/bn-l-site-blog-pages/discussions/1
+Please discuss and contact [here](https://github.com/bn-l/bn-l-site-blog-pages/discussions/1)
