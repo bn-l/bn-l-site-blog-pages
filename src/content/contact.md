@@ -1,8 +1,8 @@
 ---
 title: Contact
-description: An contact page
+description: A contact page
 # featured_image: /assets/img/about-bg.jpg
 page_type: page
 ---
 
-Me!
+My electronic mail address is: 

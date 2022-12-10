@@ -7,6 +7,10 @@ page_type: post
 permalink: "posts/box-unbox-stack-heap-csharp"
 ---
 
+::: summary
+ℹ️ **Summary**: Boxing converts a type from fixed memory size (stack memory) to a flexible memory version (on heap memory)—with all the potential benefits / detriments 
+:::
+
 Firstly the two major memory stores:
 
 ## Stack
@@ -60,9 +64,7 @@ Two common types that are involved in boxing and unboxing:
   - A new object needs to be created
   - type needs to be casted (converted)
 
-
-
-
+Note: Feel free to contact if you would like to make a suggestion
 
 *[LIFO]: Last In First Out
 

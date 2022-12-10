@@ -5,4 +5,4 @@ description: An about page
 page_type: page
 ---
 
-Me!
+Please see the contact section for contact details.
