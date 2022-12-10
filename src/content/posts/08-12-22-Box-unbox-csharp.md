@@ -1,5 +1,5 @@
 ---
-title: "Boxing VS unboxing & stack VS Heap in csharp"
+title: "Boxing vs unboxing & stack vs heap in csharp"
 description: "Conversion from a 'reference type' to a value type and vice versa and what happens on a lower level with memory"
 date: 09-12-22
 draft: false
