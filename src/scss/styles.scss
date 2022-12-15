@@ -82,9 +82,32 @@ body {
 
 }
 
+.mermaid {
+    text-align: center;
+}
+.mermaid .nodeLabel {
+    padding: 1em;
+}
 
 .main-container {
 
+}
+
+.toc {
+    
+}
+.toc a {
+    text-decoration:  none;
+    // color: inherit;
+}
+.toc ol {
+    padding: 0 1.2em;
+}
+.toc li {
+    padding: 0.3em 0;
+}
+.toc li li {
+    list-style: lower-roman;
 }
 
 .posts-list {
@@ -179,17 +202,72 @@ body {
 .post .body ul {
 
 }
-.post .body li {
-    padding: 0.3em 0;
+ul {
+    list-style-type: disc;
+  }
+  
+ul ul {
+   list-style-type: circle;
+}
+  
+ul ul ul {
+   list-style-type: square;
 }
 
-.post .body h1::before, .post .body h2::before, .post .body h3::before, .post .body h4::before, .post .body h5::before, .post .body h6::before {
+ul ul ul ul {
+    list-style-type: "\25B8  ";
+}
+
+ ul ul ul ul ul {
+    list-style-type: "\25B9  ";
+}
+.post .body li {
+    padding: 0.3em 0;
+    line-height: 1.4em;
+}
+
+.post .body li p {
+    margin: 0;
+}
+
+// .post .body h1::before, .post .body h2::before, .post .body h3::before, .post .body h4::before, .post .body h5::before, .post .body h6::before {
+//     content: "> ";
+// }
+.post .body h2::before {
     content: "> ";
 }
+.post .body h3::before {
+    content: ">> ";
+}
+.post .body h4::before {
+    content: ">>>> ";
+}
+.post .body h5::before {
+    content: ">>>>> ";
+}
+.post .body h6::before {
+    content: ">>>>>> ";
+}
+
 .post .body h1, .post .body h2, .post .body h3, .post .body h4, .post .body h5, .post .body h6 {
     font-weight: bold;
     font-family: monospace;
     margin-bottom: 1em;
+}
+.post .body h2 {
+    font-size: 2em;
+}
+.post .body h3 {
+    font-size: 1.8em;
+}
+.post .body h4 {
+    font-size: 1.6em;
+}
+.post .body h5 {
+    font-size: 1.5em;
+}
+.post .body h6 {
+    font-size: 1.4em;
 }
 .post .body .link {
 

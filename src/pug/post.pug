@@ -9,4 +9,5 @@ block main
             .date= "Posted: " + DateTime.fromMillis(parseInt(timestamp)).toFormat("dd-LL-yy")
         if updated
             .updated= "Updated:" + DateTime.fromMillis(parseInt(updatedTimestamp)).toFormat("dd-LL-yy")
+        .toc!=toc
         .body !{contents}

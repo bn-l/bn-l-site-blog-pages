@@ -12,7 +12,7 @@ Metalsmith is a static site building that will transform static files for you. I
 
 The workflow is rather smooth. You can use your editor of choice (e.g. a desktop app) to create the markdown which gives a great UI experience entirely for free and without any vendor lockdown. I'm using a custom fork of [MarkText](https://github.com/bn-l/marktext) and it's great:
 
-![](assets/img/2022-12-03-03-28-04-image.png)
+![](images/2022-12-03-03-28-04-image.png)
 
 The lighter colored block of code is "front matter" a markdown extension for file metadata. Here I'm using it for the post metadata. Metalsmith takes this and injects it into the templates which is very cool. 
 

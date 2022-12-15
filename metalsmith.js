@@ -1,5 +1,6 @@
 const Metalsmith = require('metalsmith')
 const drafts = require('@metalsmith/drafts')
+const toc = require('@metalsmith/table-of-contents')
 const layouts = require('@metalsmith/layouts')
 // const markdown = require('@metalsmith/markdown')
 const sass = require('@metalsmith/sass')
@@ -67,10 +68,12 @@ function formattedDatesForPosts(files, metalsmith) {
 function noop() {}
 
 var md = markdown({html: true});
+md.use(require('markdown-it-textual-uml'))
 md.parser
   .use(require('markdown-it-emoji'))
   .use(require('markdown-it-abbr'))
   .use(require('markdown-it-footnote'))
+  
   .use(require('markdown-it-container'), "update")
   .use(require('markdown-it-container'), "info")
   .use(require('markdown-it-container'), "summary")
@@ -92,6 +95,13 @@ Metalsmith(__dirname)
     }
   }))
   .use(formattedDatesForPosts)
+  .use(
+    toc({
+      levels: [2, 3, 4, 5, 6],
+      anchor: 'add',
+      root: null
+    })
+  )
   .use(layouts({
     directory: 'src/pug',
     default: 'post.pug',

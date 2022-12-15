@@ -2,6 +2,7 @@
 title: "Setting up this blog using metalsmith - Part 2"
 description: "Changing the markdown parser to add extensions: emoji, containers and abbreviations"
 date: 08-12-22
+updated: 14-12-22
 draft: false
 page_type: post
 permalink: "posts/setting-up-this-blog-using-metalsmith-part-2"
@@ -55,6 +56,11 @@ So that from my pug template I can do this:
 ```
 
 Pretty nice.
+
+
+::: update
+Update 14/12/22: I added [mermaidjs](https://mermaid-js.github.io/) graph parsing to markdown-it. Does flowcharts, UML class diagrams and more. Incredibly cool. There are a few packages on NPM and a few repos. The one to use is: ["markdown-it-textual-uml"](https://github.com/manastalukdar/markdown-it-textual-uml#readme). But take care to include the mermaid script with the defer and type="module" setting.
+:::
 
 
 

@@ -41,6 +41,7 @@
     "dependencies": {
         "@metalsmith/js-bundle": "^0.2.0",
         "@metalsmith/permalinks": "^2.4.1",
+        "@metalsmith/table-of-contents": "^1.0.0",
         "bootstrap": "5.1.3",
         "darkmode-js": "^1.5.7",
         "highlight.js": "^11.7.0",
@@ -49,6 +50,8 @@
         "markdown-it-container": "^3.0.0",
         "markdown-it-emoji": "^2.0.2",
         "markdown-it-footnote": "^3.0.3",
+        "markdown-it-textual-uml": "^0.12.0",
+        "mdi-mermaid": "^0.3.18",
         "metalsmith-markdownit": "^0.5.0"
     },
     "devDependencies": {
