@@ -16,3 +16,4 @@ How can it be approaching 202**3**? That's 23. Not 20. Or 21. *Three*. Three sin
 3. Reaching out to people more often and checking up with them. Even when, in the moment, it seems like an imposition.
 4. Asserting feelings with more courage
 5. 20x the courage—especially of the unknown.
+
