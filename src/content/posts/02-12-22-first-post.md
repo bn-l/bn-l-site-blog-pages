@@ -6,6 +6,8 @@ description: My initial post to this blog
 draft: false
 date: 02-12-22
 page_type: post
+permalink: "posts/first-post"
+# toc: true
 ---
 
 ## Test blog title
