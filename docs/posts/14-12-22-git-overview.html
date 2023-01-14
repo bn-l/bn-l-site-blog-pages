@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="No verbiage, no nonsense, not written for SEO. Immediately actionable. Assumes CS knowledge and only some git."><meta name="author"><title>Clear overview of git - bn-l</title><link rel="icon" type="image/x-icon" href="https://blog.bn-l.net/assets/favicon.ico"><link href="https://blog.bn-l.net/css/styles.css" rel="stylesheet"><link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" rel="stylesheet"><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap" rel="stylesheet"><script src="/index.js" defer></script><script src="https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs" type="module" defer blocking="render"></script><mermaid class="initialize" {startOnLoad:true}></mermaid></head><body><header class="masthead"><h1 class="page-title">Clear overview of git</h1><p class="site-tag-line"></p></header><!-- Navigation--><nav class="nav-container"><ul class="nav-list"><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/">Home</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/about">About</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/contact">Contact</a></li></ul></nav><div class="main-container"><div class="post"> <div class="date">Posted: 14-12-22</div><div class="toc"><ol class="toc"><li class="toc-item"><a class="toc-link" href="#intro">Intro</a></li><li class="toc-item"><a class="toc-link" href="#further-concepts">Further Concepts</a><ol class="toc"><li class="toc-item"><a class="toc-link" href="#remotes">Remotes:</a></li><li class="toc-item"><a class="toc-link" href="#head">HEAD</a></li><li class="toc-item"><a class="toc-link" href="#branching">Branching</a></li><li class="toc-item"><a class="toc-link" href="#merge">Merge</a></li><li class="toc-item"><a class="toc-link" href="#rebasing">Rebasing</a></li><li class="toc-item"><a class="toc-link" href="#fetch">Fetch</a></li><li class="toc-item"><a class="toc-link" href="#pull">Pull</a></li><li class="toc-item"><a class="toc-link" href="#push">Push</a></li><li class="toc-item"><a class="toc-link" href="#cherry-pick">Cherry-pick</a></li><li class="toc-item"><a class="toc-link" href="#git-shortcut-references">Git shortcut references</a></li><li class="toc-item"><a class="toc-link" href="#the-three-trees">The three "trees"</a></li></ol></li><li class="toc-item"><a class="toc-link" href="#references">References</a></li></ol></div><div class="body"><hr>
+<h2 id="intro">Intro</h2>
+<p>A git repo <a href="https://archive.ph/wip/YX2Ic">under the hood</a> is a directed acyclic graph (<a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>):</p>
+<div class="mermaid">
+flowchart TB
+	1[commit a]--&gt;2[commit b]
+	1[commit a]--&gt;3[tree a]
+	3[tree a]--&gt;4[blob a]
+	2[commit b]--&gt;5[tree b]
+	5[tree b]--&gt;6[blob b]
+	5[tree b]--&gt;7[blob c]
+	5[tree b]--&gt;9[tree c]
+	HEAD-.-&gt;main-.-&gt;2[commit b]
+	
+	 style HEAD fill:#feff9c
+	 style main fill:#feff9c
+</div>
+<p>This repo started at <strong>commit a</strong> (where HEAD and <abbr title="Also called master.">main</abbr> initially pointed to). A commit happened and now it is at <strong>commit b</strong>. The structure is a lot simpler than it appears. Starting from the bottom:</p>
+<ul>
+<li>Git objects (DAG nodes, identified by a SHA1):
+<ul>
+<li><strong>Blob:</strong> how git stores <em>files</em>.</li>
+<li><strong>Tree:</strong> Correspond to <em>directories</em>. They point to blobs (or other trees) and store file names and other file information</li>
+<li><strong>Commits:</strong> A snapshot of the files a certain point. They have a "commit message" and point to the previous commit and a single tree.</li>
+</ul>
+</li>
+<li>References:
+<ul>
+<li><strong>HEAD and <abbr title="Also called master.">main</abbr>:</strong> (case sesitive) not git objects. Git calls these "references". They're like post-it notes on nodes in the DAG. Literally a file named "HEAD" (or "branch name") containing a single line: the commit SHA1 or the name of another ref. Stored in project/.git/refs.</li>
+<li>A node on the git DAG must have a reference to it or else it can be garbage collected / deleted.</li>
+<li>Nodes cannot be mutated but these "post-its" can be moved around freely. They don't get stored in the history, and they aren't <em>directly</em><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> transferred between repositories. They act like bookmarks.</li>
+</ul>
+</li>
+</ul>
+<h2 id="further-concepts">Further Concepts</h2>
+<h3 id="remotes">Remotes:</h3>
+<ul>
+<li>Named git urls</li>
+<li>Naming allows quick reference. Can simply use an identifier instead of typing: http:… etc</li>
+<li>Literally listed in .git/config like this (git's config file is <a href="https://stackoverflow.com/a/68461700/20603697">basically</a> INI format):<pre><code class="language-ini">[remote "origin"]
+    url = https://github.com/bn-l/bn-l-site-blog.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+</code></pre>
+</li>
+</ul>
+<h3 id="head">HEAD</h3>
+<p>Like a <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/Audio/tape2.html">tape head</a>, this is where writes happen.</p>
+<h3 id="branching">Branching</h3>
+<ul>
+<li>Branches are like post-it notes stuck on the <strong>end</strong> (always on the end) of a series of commits</li>
+<li>When HEAD is pointing to a branch (e.g. "<abbr title="Also called master.">main</abbr>") it means a file called HEAD contains single line like "ref: refs/heads/<abbr title="Also called master.">main</abbr>". When pointing to a commit it will contain the SHA1 of the commit.</li>
+<li><strong>Committing to a branch</strong>:
+<ul>
+<li>Here HEAD is pointing to a branch called <abbr title="Also called master.">main</abbr> which is pointing to commit a:</li>
+</ul>
+<div class="mermaid">
+flowchart TB
+	HEAD-.-&gt;main-.-&gt;1[commit a]
+	style HEAD fill:#feff9c
+   style main fill:#feff9c
+</div>
+<ul>
+<li>The result of a commit called "commit b":</li>
+</ul>
+<div class="mermaid">
+flowchart TB
+	HEAD-.-&gt;main-.-&gt;1[commit b]
+	1[commit b]--&gt;2[commit a]
+	style HEAD fill:#feff9c
+   style main fill:#feff9c
+</div>
+</li>
+<li><strong>Detached head mode</strong>:
+<ul>
+<li>When pointing to (AKA referencing) a <strong>commit</strong> (vs a ref) the HEAD is considered "detached" (…from a branch with a named reference—like <abbr title="Also called master.">main</abbr> or dev)</li>
+<li>If you commit again the only reference to this offshoot will be the HEAD. Moving to another commit will leave the offshoot without a reference and it will be subject to <abbr title="Garbage collection">GC</abbr>.</li>
+<li><strong>Allows for wild experimentation</strong>: Checkout a commit. Do whatever you like. Checkout back to a named branch and forget it ever happened.</li>
+</ul>
+</li>
+<li><strong>Orphan branches</strong>:
+<ul>
+<li>Allows for new branches without the commit history (i.e. one new node with all the file changes but none of the commit messages)</li>
+<li>Good for creating a branch that doesn't disclose the previous commit messages when pushing to a public repo:</li>
+</ul>
+<pre><code class="language-shell">git checkout --orphan docs # (docs is the name of the branch)
+git commit -m "new docs branch"
+git push origin docs
+</code></pre>
+</li>
+</ul>
+<h3 id="merge">Merge</h3>
+<ul>
+<li>
+<p>When merging two commits git will try to do it automatically. If there are conflicting changes it will then pause in the "unmerged" state (see <a href="/posts/git-commands">git status command)</a>.</p>
+</li>
+<li>
+<p>White space characters can cause unwanted merge conflicts (e.g. the document is reformatted from tabs to spaces). Options exist to
+ignore white space.</p>
+</li>
+<li>
+<p>Merge stages (these are recorded by git):</p>
+<ol>
+<li>Find the common ancestor in the DAG</li>
+<li>"Ours":</li>
+<li>"Theirs": The commit that is being "merged in"</li>
+</ol>
+</li>
+<li>
+<p><strong>Conflicts</strong>:</p>
+<ul>
+<li>This command will show conflicts that are pausing the merge (adding <em>-p</em> gives the detailed diffs):<pre><code class="language-shell">  git log --oneline --left-right --merge
+</code></pre>
+</li>
+<li>Calling "--continue" with the command that caused a merge conflict will try and continue the merge</li>
+</ul>
+</li>
+</ul>
+<h3 id="rebasing">Rebasing</h3>
+<ul>
+<li>Usually, to merge two commits, a new commit is created that is a combination of two. Rebasing instead merges and changes the parent of a commit.</li>
+<li>E.g.: you're on the branch "dev" and you want to merge what you've done with <abbr title="Also called master.">main</abbr>. Instead of creating a new "merge" commit on <abbr title="Also called master.">main</abbr> you can change the parent of the dev branch to be the same commit <abbr title="Also called master.">main</abbr> points to.</li>
+</ul>
+<h3 id="fetch">Fetch</h3>
+<ul>
+<li>Unlike pull does not modifiy local files unless specifically checked out</li>
+<li>Safely downloads or updates: files, commits and refs from a remote repo</li>
+<li>Fetches "origin" when called without specifics</li>
+</ul>
+<h3 id="pull">Pull</h3>
+<ul>
+<li>Like fetch in that it downloads remote content but then immediately does a merge with local files</li>
+<li>Can be called with "--rebase"  option and will rebase instead of merging</li>
+</ul>
+<h3 id="push">Push</h3>
+<ul>
+<li>"Updates remote refs using local refs, while sending objects necessary to complete the given refs." (from the manual)
+<ul>
+<li>E.g. if the remote has no branch called "feature/hello-world" a ref in the remote repo will be created pointing to a specific commit (the "necessary objects").</li>
+</ul>
+</li>
+<li>Default behaviour:
+<ul>
+<li>If destination repo not specified defaults to "origin"</li>
+<li>Current branch is pushed to the default corresponding branch if branch not specified. E.g. if on the dev branch it will try to push to a branch called "dev" on the remote (push is aborted if upstream
+does not have a branch with the same name)</li>
+</ul>
+</li>
+<li><strong>NOTE</strong> It is <a href="https://stackoverflow.com/questions/26005031/what-does-git-push-do-exactly#comment107413312_26005964"><em>not</em> the opposite of a pull</a>:
+<ul>
+<li>Confusing misnomer.</li>
+<li>It gives the remote repo your refs and objects and <em>asks</em> them to update their refs</li>
+<li>If a fast forward (automatic) merge is possible, then the remote branch will do this, but otherwise not unless -f or force option is used and is allowed.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cherry-pick">Cherry-pick</h3>
+<p>Applies only the changes from a specified commit, creating a new commit for the combination.</p>
+<h3 id="git-shortcut-references">Git shortcut references</h3>
+<p>(<a href="https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection">location</a> in the git manual)</p>
+<pre><code class="language-shell">git show HEAD^ #the parent of HEAD. 
+</code></pre>
+<pre><code class="language-shell">git show HEAD~ #the parent of HEAD
+</code></pre>
+<pre><code class="language-shell">git show HEAD~3 #the third ancestor of head
+</code></pre>
+<pre><code class="language-shell">git show HEAD~~~ #the third ancestor of head
+</code></pre>
+<h3 id="the-three-trees">The three <strong>"trees"</strong></h3>
+<p>NOTE!: This, confusingly, does not refer to a "tree" object in the DAG, but to the "three tree" model in git:</p>
+<ul>
+<li><strong>Working tree:</strong> The literal files in the working directory which can be tracked and untracked (or watched)</li>
+<li><strong>Staging tree</strong> AKA the "index":  The files <em>to be</em> committed. A "git add ." will "add" all tracked files from the working tree to the staging tree.</li>
+<li><strong>Commit tree</strong>: Staged files are added to a new node in the git DAG (and stored locally in a blob)</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://eagain.net/articles/git-for-computer-scientists/">Git for Computer Scientists</a> (<a href="https://archive.ph/YX2Ic">a</a>)</li>
+<li><a href="https://stackoverflow.com/a/26005964/20603697">Stack Overflow: What does GIT PUSH do exactly?</a> (<a href="https://archive.ph/6AZdA">a</a>)</li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>You get or give refs when you get or give a repo. E.g. if you're getting one (like with git clone) you get a set of refs namespaced under the remote name. These will literally be at: /repo-name/.git/refs/remotes/remote-name. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div></div></div><!-- Footer--><footer> Copyright &copy; bn-l 2023</footer><!-- Core theme JS--><script>hljs.highlightAll();</script></body></html>

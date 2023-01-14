@@ -50,6 +50,7 @@
         "markdown-it-container": "^3.0.0",
         "markdown-it-emoji": "^2.0.2",
         "markdown-it-footnote": "^3.0.3",
+        "markdown-it-plantuml": "^1.4.1",
         "markdown-it-textual-uml": "^0.12.0",
         "mdi-mermaid": "^0.3.18",
         "metalsmith-markdownit": "^0.5.0"

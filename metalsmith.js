@@ -77,6 +77,11 @@ md.parser
   .use(require('markdown-it-container'), "update")
   .use(require('markdown-it-container'), "info")
   .use(require('markdown-it-container'), "summary")
+  // Image on left, text on right
+  .use(require('markdown-it-container'), "leftright")
+  .use(require('markdown-it-plantuml'), ({
+    "generateSource": true
+  }))
 
 
 Metalsmith(__dirname)
@@ -86,7 +91,6 @@ Metalsmith(__dirname)
   .metadata(sitedata)
   .use(dev ? noop : drafts())
   .use(md)
-  .use(permalinks())
   .use(collections({
     posts: {
       pattern: 'posts/**/*.html',

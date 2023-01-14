@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="Changing the markdown parser to add extensions: emoji, containers and abbreviations"><meta name="author"><title>Setting up this blog using metalsmith - Part 2 - bn-l</title><link rel="icon" type="image/x-icon" href="https://blog.bn-l.net/assets/favicon.ico"><link href="https://blog.bn-l.net/css/styles.css" rel="stylesheet"><link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" rel="stylesheet"><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap" rel="stylesheet"><script src="/index.js" defer></script><script src="https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs" type="module" defer blocking="render"></script><mermaid class="initialize" {startOnLoad:true}></mermaid></head><body><header class="masthead"><h1 class="page-title">Setting up this blog using metalsmith - Part 2</h1><p class="site-tag-line"></p></header><!-- Navigation--><nav class="nav-container"><ul class="nav-list"><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/">Home</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/about">About</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/contact">Contact</a></li></ul></nav><div class="main-container"><div class="post"> <div class="date">Posted: 08-12-22</div><div class="updated">Updated:14-12-22</div><div class="toc"></div><div class="body"><p>I added support for a few rarer markdown extensions by changing the markdown renderer used from &quot;<a href="https://github.com/markedjs/marked">Marked</a>&quot; <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> to <a href="https://github.com/markdown-it">markdown-it</a>--which has a plugin system and good plugins. To do this I'm using the <a href="https://github.com/mayo/metalsmith-markdownit">metalsmith-markdownit</a> <a href="https://www.npmjs.com/package/metalsmith-markdownit">package</a> (which unfortunately was last updated Dec 2018) with the following extensions:</p>
+<ul>
+<li><a href="https://github.com/markdown-it/markdown-it-abbr">markdown-it-abbr</a>: Allows for abbreviations <abbr title="Like this one">LTE</abbr></li>
+<li><a href="https://github.com/markdown-it/markdown-it-container">markdown-it-container</a>: For <a href="https://github.com/markdown-it/markdown-it-container">&quot;custom containers&quot;</a> (a nice syntax to wrap a paragraph in a custom class div. E.g. for warnings)</li>
+<li><a href="https://github.com/markdown-it/markdown-it-emoji">markdown-it-emoji</a>: We all know emojis are <strong>100% extremely critical</strong> 😨</li>
+<li><a href="https://github.com/markdown-it/markdown-it-footnote">markdown-it-footnote</a></li>
+</ul>
+<p>And I made these changes to my Metalsmith.js to make use of the above:</p>
+<pre><code class="language-js">const markdown = require('metalsmith-markdownit')
+var md = markdown({html: true});
+md.parser
+  .use(require('markdown-it-emoji'))
+  .use(require('markdown-it-abbr'))
+  .use(require('markdown-it-footnote'))
+  .use(require('markdown-it-container'), &quot;update&quot;)
+  .use(require('markdown-it-container'), &quot;info&quot;)
+  .use(require('markdown-it-container'), &quot;summary&quot;)
+Metalsmith
+// ... the other metalsmith middleware use calls
+    .use(md)
+</code></pre>
+<h2>Dates</h2>
+<p>The <a href="https://github.com/metalsmith/startbootstrap-clean-blog/">barebones / startbootstrap template</a> I am using as a base uses <a href="https://github.com/metalsmith/startbootstrap-clean-blog/blob/master/metalsmith.js#L31">static dates</a>, created by JS at build time. In order to get dynamic dates based on the client's locale, I (very lazily) adapted the terrible code on this template with Luxon's (formerly moment.js) DateTime parser / formatter:</p>
+<pre><code class="language-js">const DateTime = require(&quot;luxon&quot;).DateTime
+</code></pre>
+<p>And passed that to the metadata object &quot;sitedata&quot;:</p>
+<pre><code class="language-js">const sitedata = {
+    DateTime: DateTime
+    // the rest of the metadata
+}
+</code></pre>
+<p>So that from my pug template I can do this:</p>
+<pre><code>.date= &quot;Posted: &quot; + DateTime.fromMillis(parseInt(timestamp)).toFormat(&quot;dd-LL-yy&quot;)
+</code></pre>
+<p>Pretty nice.</p>
+<div class="update">
+<p>Update 14/12/22: I added <a href="https://mermaid-js.github.io/">mermaidjs</a> graph parsing to markdown-it. Does flowcharts, UML class diagrams and more. Incredibly cool. There are a few packages on NPM and a few repos. The one to use is: <a href="https://github.com/manastalukdar/markdown-it-textual-uml#readme">&quot;markdown-it-textual-uml&quot;</a>. But take care to include the mermaid script with the defer and type=&quot;module&quot; setting.</p>
+</div>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>what a stupid name <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div></div></div><!-- Footer--><footer> Copyright &copy; bn-l 2023</footer><!-- Core theme JS--><script>hljs.highlightAll();</script></body></html>
