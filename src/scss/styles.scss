@@ -29,25 +29,41 @@ body {
     font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
 }
 
+@media (min-width: 360px) {
+    body {
+        margin: 0.4em 1em;
+    }
+}
 @media (min-width: 380px) {
  body {
     margin: 2em 2em;
- }
+}
 }
 @media (min-width: 768px) {
  body {
-    margin: 3em 10em;
+    margin: 3em 8em;
  }
+ .post .body svg {
+    width: 80%;
+    display: block;
+    margin: auto;
+}
 }
 @media (min-width: 1000px) {
  body {
     margin: 3em 12em;
  }
+ .post .body svg {
+    width: 75%;
+    display: block;
+    margin: auto;
+}
 }
 @media (min-width: 1200px) {
  body {
     margin: 3em 20em;
  }
+
 }
 @media (min-width: 1400px) {
  body {
