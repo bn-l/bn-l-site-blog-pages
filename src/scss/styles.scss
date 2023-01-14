@@ -43,8 +43,8 @@ body {
  body {
     margin: 3em 8em;
  }
- .post .body svg {
-    width: 80%;
+ .post .body svg, .svgImg {
+    width: 80% !important;
     display: block;
     margin: auto;
 }
@@ -53,8 +53,8 @@ body {
  body {
     margin: 3em 12em;
  }
- .post .body svg {
-    width: 75%;
+ .post .body svg, .svgImg {
+    width: 75% !important;
     display: block;
     margin: auto;
 }
@@ -70,6 +70,7 @@ body {
     margin: 3em 27em;
  }
 }
+
 
 .masthead {
     
