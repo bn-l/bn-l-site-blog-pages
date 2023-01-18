@@ -19,11 +19,12 @@ block main
                 h2.year-heading= year
                 .year-list
                     each post, index in postsByYear[year]
-                        .post-preview
-                            a(href=post.path).post-link
-                                h3.heading #{post.title}
-                                .description #{post.description}
-                            .date-line= DateTime.fromMillis(parseInt(post.timestamp)).toFormat("cccc dd, LLLL")
+                        if !post.draft
+                            .post-preview
+                                a(href=post.path).post-link
+                                    h3.heading #{post.title}
+                                    .description #{post.description}
+                                .date-line= DateTime.fromMillis(parseInt(post.timestamp)).toFormat("cccc dd, LLLL")
 
 
         
