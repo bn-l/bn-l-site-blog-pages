@@ -37,7 +37,7 @@ This tutorial will cover sculpting, not how to make hard surface things like a r
 
 ### Tip
 
-- The **origin** of a mesh affects many things. E.g.: mirroring and rotation. Select > right-click on the mesh(s) in object mode to change / reset the origin.
+- The **origin** (little orange dot) of a mesh affects many things. E.g.: mirroring and rotation. Select > right-click on the mesh(s) in object mode to change / reset the origin.
 
 ### Useful modifiers
 
