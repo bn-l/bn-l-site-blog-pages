@@ -32,7 +32,6 @@ git merge [dest-branch]
 ```
 rebase or merge current branch or commit (the one head is pointing to) with [dest-branch]
 
-
 <br>
 
 ```sh
@@ -50,6 +49,12 @@ git status
 git revert <commit>
 ```
 Unlike reset will create a new commit where the everything is the same except for the specified commit (i.e. doesn't include history)
+
+```sh
+git restore .
+```
+
+Restores unstaged files in the working directory from the index.
 
 <br>
 
