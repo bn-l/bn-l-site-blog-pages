@@ -2,7 +2,7 @@
 title: Treat Time-Release Locker
 description: A locker that stores a number of treats released after a timer you set goes off
 draft: false
-date: 01-01-22
+date: 01-01-23
 page_type: post
 permalink: "posts/treat-time-release-locker"
 ---
