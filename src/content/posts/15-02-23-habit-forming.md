@@ -88,7 +88,7 @@ Repetition (and the other factors of Habit Formation) will increase the strength
 
 ## **Habit Formation**
 
-A habit will not necessarily form from a cue and a response. The following can influence it:
+The following can reduce or increase the chance of a habit being made or strengthened:
 
 - Need to make decisions (reduces)
     - Do you need to make many thoughtful decisions about the habitual behavior? Are you thinking: What to do, where to go, or weighing options? The chance of habit forming is reduced
