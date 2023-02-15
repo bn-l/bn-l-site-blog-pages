@@ -8,10 +8,11 @@ extends base-layout.pug
 //- note: posts are grouped by year
 
 
-
 block main
+
     - var groupBy = (x,f)=>x.reduce((a,b,i)=>((a[f(b,i,x)]||=[]).push(b),a),{})
     - var postsByYear = groupBy(collections.posts, posts => posts.year)
+    //- - console.log(postsByYear)
 
     div.posts-list 
         each year, index in Object.keys(postsByYear).reverse()
