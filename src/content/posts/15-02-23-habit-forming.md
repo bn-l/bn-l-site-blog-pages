@@ -43,7 +43,7 @@ Starting from goal system and going counter clockwise:
 
 
 
-Here, although you start with 1. Goal directed, 2. **habit directed can take over** merely by providing the right context cues. With youtube: You open your phone (context cue), a memory pathway is activated, and then you watch youtube (habituated behavior). There's no goal guiding this behavior, you don't actually want to watch youtube. But you do.
+Here, although you start with 1. Goal directed behavior, 2. **habit directed can take over** merely by providing the right context cues. With youtube: You open your phone (context cue), a memory pathway is activated, and then you watch youtube (habituated behavior). There's no goal guiding this behavior, you don't actually want to watch youtube. But you do.
 
 
 
@@ -91,7 +91,7 @@ Repetition (and the other factors of Habit Formation) will increase the strength
 The following can reduce or increase the chance of a habit being made or strengthened:
 
 - Need to make decisions (reduces)
-    - Do you need to make many thoughtful decisions about the habitual behavior? Are you thinking: What to do, where to go, or weighing options? The chance of habit forming is reduced
+    - Do you need to make many thoughtful decisions about the habitual behavior? Are you thinking: What to do, where to go, or weighing options? The chance of a habit forming is reduced
 
 - Repetition (increases)
 
