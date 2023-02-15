@@ -34,7 +34,6 @@ Starting from goal system and going counter clockwise:
     - The exposure can be involuntary: Seeing an ad for fast food
 3. You develop a **memory** of the context and associate it with a behavioral response
     - The context of being at the computer is linked in the mind with a previous behavior, like watching youtube
-    - Context — Behavior
     - This is also referred to as "memory pathways" or "dopamine pathways" which are being "struck" because of the particular cue
 4. The habitual **response**
     - Watching youtube. 
