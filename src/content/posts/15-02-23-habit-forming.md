@@ -31,12 +31,12 @@ Starting from goal system and going counter clockwise:
     - Goal: Working on a personal project
 2. You are **exposed** to some "context" when you get cues:
     - Sitting at the computer and beginning to work. The contextual cues are the entirety of the stimuli you experience: Sounds, sights, smells, thoughts. 
-    - The exposure can be involuntary: Seeing an ad for fast food
+    - The exposure can be involuntary: Seeing a mention of youtube
 3. You develop a **memory** of the context and associate it with a behavioral response
     - The context of being at the computer is linked in the mind with a previous behavior, like watching youtube
     - This is also referred to as "memory pathways" or "dopamine pathways" which are being "struck" because of the particular cue
 4. The habitual **response**
-    - Watching youtube. 
+    - Watching youtube 
 5. (Grey arrow) Making **inferences** about how important the habit is to your goal by observing your own behavior and coming to (maybe wrong) conclusions 
     - "I do it, therefore it's probably what I intended"
     - The stronger the habit, the more prone to this error.
