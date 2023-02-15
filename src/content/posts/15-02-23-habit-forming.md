@@ -19,7 +19,7 @@ Basic habitual behavior is:
 
     
 
-But it can also be represented in more detail:
+In more detail it is:
 
 ![image-20230215054841361](images/image-20230215054841361.png)
 
