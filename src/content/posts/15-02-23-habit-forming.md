@@ -11,7 +11,7 @@ permalink: "posts/beginner-blender-tutorial-sculpture-part-2"
 
 ## A Habit
 
-This is the basic structure of habitual behavior:
+Basic habitual behavior is:
 
 1. Cue
 
@@ -19,13 +19,13 @@ This is the basic structure of habitual behavior:
 
     
 
-This is a more detailed representation:
+But it can also be represented in more detail:
 
 ![image-20230215054841361](images/image-20230215054841361.png)
 
 (Wood & Rünger, 2016)
 
-Explanation (starting from goal system and going counter clockwise—sort of): 
+Starting from goal system and going counter clockwise: 
 
 1. The **goal system** makes you act by motivating you to an end state
     - Goal: Working on a personal project
@@ -44,11 +44,11 @@ Explanation (starting from goal system and going counter clockwise—sort of):
 
 
 
-Here, although you start with 1. Goal directed, 2. **habit directed can take over** merely by providing the right context cues. With youtube: You open your phone (context cue), a memory pathway is activated, then watch youtube (habituated behavior). There's no goal guiding this behavior, you don't actually want to watch youtube. But you do.
+Here, although you start with 1. Goal directed, 2. **habit directed can take over** merely by providing the right context cues. With youtube: You open your phone (context cue), a memory pathway is activated, and then you watch youtube (habituated behavior). There's no goal guiding this behavior, you don't actually want to watch youtube. But you do.
 
 
 
-And the more you do this maladaptive thing, the more you think it's goal directed behavior and not habit directed (you start to get deluded.)
+And the more you do this, the more you think it's goal directed behavior and not habit directed (you start to get deluded.)
 
 
 
@@ -56,9 +56,34 @@ And the more you do this maladaptive thing, the more you think it's goal directe
 
 ![stress-and-habits](images/stress-and-habits.png)
 
-Stress will push you into more automatic behavior. You just don't want to think. This can be compounded with by condemning yourself and pressing play on various negative self talk tapes.
+Stress will push you into more automatic behavior. You just don't want to think. This can be compounded by condemning yourself and pressing play on various negative self talk tapes.
 
-Recognize that during stress, you may fall back on old habits—especially if they were relatively recently abandoned. Move on from the set back and continue Positive Habit and Habit Changing.
+Recognize that during stress, you may fall back on old habits—especially if they were relatively recently worked on. Move on from the set back and continue Positive Habit and Habit Changing.
+
+
+
+## **Positive Habit and Habit Changing**
+
+![image-20230215060024618](images/image-20230215060024618.png)
+
+
+
+Cueing, response and reward can be strategically manipulated to align habitual behavior with goals. E.g.:
+
+- Cue: 
+    - Placing items on the desk to remind you of your goals.
+    - Performing the behavior in a specific location only
+    - Playing some music
+- Response:
+    - Goal directed behavior (e.g. working on a task, exercising)
+- Reward:
+    - You can artificially enhance the reward
+    - "I will eat x after doing y"
+    - "I will watch an episode of x after doing y"
+
+![image-20230215055911744](images/image-20230215055911744.png)
+
+Repetition (and the other factors of Habit Formation) will increase the strength of the habit and make it possible to flip on autopilot without the risk of going off course during stressful times. This, to me, is the most powerful aspect of consciously created habits.
 
 
 
@@ -77,33 +102,6 @@ A habit will not necessarily form from a cue and a response. The following can i
     - Random (increases)
     - Fixed but not too often (increases)
     - Too often (reduces)
-
-
-
-## **Positive Habit and Habit Changing**
-
-![image-20230215060024618](images/image-20230215060024618.png)
-
-
-
-Cueing, response and reward can be consciously manipulated to align habitual behavior with goals. E.g.:
-
-- Cue: 
-    - Placing items on the desk to remind you of your goals.
-    - Performing the behavior in a specific location only
-    - Playing some music
-- Response:
-    - Goal directed behavior (e.g. working on a task, exercising)
-- Reward:
-    - You can artificially enhance the reward
-    - "I will eat x after doing y"
-    - "I will watch an episode of x after doing y"
-
-![image-20230215055911744](images/image-20230215055911744.png)
-
-Repetition (and the other factors in Habit Forming) will increase the strength of the habit, and make it possible to flip on autopilot without worrying about going off course during stressful times. This, to me, is the most powerful aspect of consciously created habits.
-
-
 
 
 
