@@ -68,3 +68,16 @@ Which didn't help VSCode.
 
 
 
+**TestsForOrigin: Unknown TestCaseRecord.Origin value Unknown**
+
+- :warning: Full error:
+
+```
+System.InvalidOperationException: TestsForOrigin: Unknown TestCaseRecord.Origin value Unknown at Microsoft.VisualStudio.TestStorage.MergedTestGroup.TestsForOrigin(TestCaseOrigin origin) at Microsoft.VisualStudio.TestStorage.MergedTestGroup.MarkAsNotRunningAndNotPending() at Microsoft.VisualStudio.TestStorage.MergedTestIndex.MarkAsNotRunningAndNotPending(TestCaseOriginKind originKind) at Microsoft.VisualStudio.TestStorage.TestStoreIndexSet.MarkTestsAsNotRunningAndNotPending(TestCaseOriginKind originKind) at Microsoft.VisualStudio.TestStorage.TestStore.MarkTestsAsNotRunningAndNotPending(TestCaseOriginKind originKind) at Microsoft.VisualStudio.TestWindow.Host.VsTestRunSession.EndTestRun() at Microsoft.VisualStudio.TestWindow.Host.VsTestRunSession.OnTestRunCompleted() at Microsoft.VisualStudio.TestWindow.Utilities.EventPumpExtensions.<>c__DisplayClass0_0.<EnqueueAsync>b__0()
+```
+
+- :information_source: Explanation:
+    - I changed the name of some test methods and files and one of the tiny [sticks](https://archive.md/7j8Ux) in vscode snapped
+- :white_check_mark: Fix:
+    - Updating to 17.5.0 as suggested by this [stackoverflow answer](https://stackoverflow.com/a/74879105)
+
