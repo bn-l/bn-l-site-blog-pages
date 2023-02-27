@@ -49,4 +49,22 @@
 &lt;/ItemGroup&gt;
 </code></pre>
 <p>Which didn't help VSCode.</p>
+<p><strong>TestsForOrigin: Unknown TestCaseRecord.Origin value Unknown</strong></p>
+<ul>
+<li>⚠️ Full error:</li>
+</ul>
+<pre><code>System.InvalidOperationException: TestsForOrigin: Unknown TestCaseRecord.Origin value Unknown at Microsoft.VisualStudio.TestStorage.MergedTestGroup.TestsForOrigin(TestCaseOrigin origin) at Microsoft.VisualStudio.TestStorage.MergedTestGroup.MarkAsNotRunningAndNotPending() at Microsoft.VisualStudio.TestStorage.MergedTestIndex.MarkAsNotRunningAndNotPending(TestCaseOriginKind originKind) at Microsoft.VisualStudio.TestStorage.TestStoreIndexSet.MarkTestsAsNotRunningAndNotPending(TestCaseOriginKind originKind) at Microsoft.VisualStudio.TestStorage.TestStore.MarkTestsAsNotRunningAndNotPending(TestCaseOriginKind originKind) at Microsoft.VisualStudio.TestWindow.Host.VsTestRunSession.EndTestRun() at Microsoft.VisualStudio.TestWindow.Host.VsTestRunSession.OnTestRunCompleted() at Microsoft.VisualStudio.TestWindow.Utilities.EventPumpExtensions.&lt;&gt;c__DisplayClass0_0.&lt;EnqueueAsync&gt;b__0()
+</code></pre>
+<ul>
+<li>ℹ️ Explanation:
+<ul>
+<li>I changed the name of some test methods and files and one of the tiny <a href="https://archive.md/7j8Ux">sticks</a> in vscode snapped</li>
+</ul>
+</li>
+<li>✅ Fix:
+<ul>
+<li>Updating to 17.5.0 as suggested by this <a href="https://stackoverflow.com/a/74879105">stackoverflow answer</a></li>
+</ul>
+</li>
+</ul>
 </div></div></div><!-- Footer--><footer> Copyright &copy; bn-l 2023</footer><!-- Core theme JS--><script>hljs.highlightAll();</script></body></html>
