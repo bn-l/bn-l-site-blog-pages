@@ -1,5 +1,5 @@
 ---
-title: Various opaque errors encountered when working in Visual Studio using the dotnet framework"
+title: "Various opaque errors encountered when working in Visual Studio using the dotnet framework"
 description: "I encoutered this errror when testing a .NET 6 app in VSCode and found a solution"
 date: 23-01-23
 draft: false
@@ -78,6 +78,6 @@ System.InvalidOperationException: TestsForOrigin: Unknown TestCaseRecord.Origin 
 
 - :information_source: Explanation:
     - I changed the name of some test methods and files and one of the tiny [sticks](https://archive.md/7j8Ux) in vscode snapped
-- :white_check_mark: Fix:
+- :white_check_mark: Fix:
     - Updating to 17.5.0 as suggested by this [stackoverflow answer](https://stackoverflow.com/a/74879105)
 

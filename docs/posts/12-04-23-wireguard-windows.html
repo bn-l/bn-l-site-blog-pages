@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="Unlike other solutions, this does not require unsafe adding to the admin group or running an admin account"><meta name="author"><title>Running WireGuard GUI on windows with a non-admin account - bn-l</title><link rel="icon" type="image/x-icon" href="https://blog.bn-l.net/assets/favicon.ico"><link href="https://blog.bn-l.net/css/styles.css" rel="stylesheet"><link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" rel="stylesheet"><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap" rel="stylesheet"><script src="/index.js" defer></script><script src="https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs" type="module" defer blocking="render"></script><mermaid class="initialize" {startOnLoad:true}></mermaid></head><body><header class="masthead"><h1 class="page-title">Running WireGuard GUI on windows with a non-admin account</h1><p class="site-tag-line"></p></header><!-- Navigation--><nav class="nav-container"><ul class="nav-list"><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/">Home</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/about">About</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/contact">Contact</a></li></ul></nav><div class="main-container"><div class="post"> <div class="date">Posted: 12-04-23</div><div class="toc"></div><div class="body"><p>All other solutions to the problem of running wireguard on windows are not ideal. The methods I've seen are:</p>
+<ol>
+<li>Just running as an admin</li>
+<li>Adding the user account to the Network Configuration Operators
+<ul>
+<li>Pros: Wireguard gui, works smoothly</li>
+<li>Cons: Your regular user gets added to an admin group and will appear in UAC prompts. This is very annoying and probably bad security.</li>
+</ul>
+</li>
+<li>Running the WireGuard tunnel as a windows service (as suggested in <a href="https://serverfault.com/a/1126482">this</a> answer)
+<ul>
+<li>Pros: Works perfectly</li>
+<li>Cons: No gui, needs an elevated console.</li>
+</ul>
+</li>
+<li>Using Task Scheduler as in <a href="https://superuser.com/a/1751055/1789647">this</a> answer (didn't work for me at all).</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>
+<p>Install the latest MSI: https://download.wireguard.com/windows-client/</p>
+</li>
+<li>
+<p>Then run this command in elevated console with your .conf file:</p>
+<p><code>wireguard /installtunnelservice C:\path\to\some\myconfname.conf</code></p>
+</li>
+</ol>
+<blockquote>
+<p>This creates a service called <code>WireGuardTunnel$myconfname</code>, which can be controlled using standard Windows service management utilites, such as services.msc or sc. — <a href="https://git.zx2c4.com/wireguard-windows/about/docs/enterprise.md">source</a></p>
+</blockquote>
+<ol>
+<li>
+<p>Control the service with &quot;ServiceTray&quot;: https://www.coretechnologies.com/products/ServiceTray/</p>
+<p>(This give you a nice icon on the system tray that shows the up status of the WireGuard tunnel service. Green = connected, red = not connected, and you can start and stop it by right clicking. See image below)</p>
+<p>Note: When creating the service controller, save the shortcut to desktop not startup (doesn't seem to work and you can copy to startup later)</p>
+</li>
+<li>
+<p>(optional) Change the service's startup type to manual if you don't want to be connected to the tunnel on startup.</p>
+</li>
+</ol>
+<p><a href="https://i.stack.imgur.com/DerWx.png">An example of what this looks like on Win 10</a>. Hovering the icon shows the name of the tunnel.</p>
+<p>From my answer at: https://superuser.com/a/1778666/1789647</p>
+</div></div></div><!-- Footer--><footer> Copyright &copy; bn-l 2023</footer><!-- Core theme JS--><script>hljs.highlightAll();</script></body></html>

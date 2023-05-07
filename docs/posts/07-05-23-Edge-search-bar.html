@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="The program launches on start up whether you disable start up or not. Two methods for disabling it"><meta name="author"><title>Disabling windows search bar AKA microsoft edge seach bar - bn-l</title><link rel="icon" type="image/x-icon" href="https://blog.bn-l.net/assets/favicon.ico"><link href="https://blog.bn-l.net/css/styles.css" rel="stylesheet"><link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" rel="stylesheet"><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap" rel="stylesheet"><script src="/index.js" defer></script><script src="https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs" type="module" defer blocking="render"></script><mermaid class="initialize" {startOnLoad:true}></mermaid></head><body><header class="masthead"><h1 class="page-title">Disabling windows search bar AKA microsoft edge seach bar</h1><p class="site-tag-line"></p></header><!-- Navigation--><nav class="nav-container"><ul class="nav-list"><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/">Home</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/about">About</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/contact">Contact</a></li></ul></nav><div class="main-container"><div class="post"> <div class="date">Posted: 07-05-23</div><div class="toc"></div><div class="body"><p><img src="images/1111.png" alt="1111"></p>
+<h2>Disable this</h2>
+<h3>A. Registry</h3>
+<ol>
+<li>
+<p>Start menu &gt; type &quot;registry&quot; &gt; right click &gt; run aRegistry Editor as admin (or open it if you don't have this option)</p>
+</li>
+<li>
+<p>In the input field under File Edit View Favorites Help paste this:</p>
+<p><code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge</code></p>
+</li>
+<li>
+<p>Do this twice: Right click &gt; New &gt; DWORD (32 bit value).</p>
+<p>Now: right click &gt; rename each to:</p>
+<p><code>WebWidgetIsEnabledOnStartup</code></p>
+<p><code>WebWidgetAllowed</code></p>
+</li>
+<li>
+<p>Make sure each DWORD's value is 0 (it should be by default)</p>
+</li>
+</ol>
+<h3>B. Double kill: Group policy</h3>
+<ol>
+<li>
+<p>Download the file <code>MicrosoftEdgePolicyTemplates.cab</code> at the <a href="https://aka.ms/EdgeEnterprise">edge enterprise page</a> and extract the contents. <a href="https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/41bed53b-c6e0-4b79-bf1f-bd33844b7aea/MicrosoftEdgePolicyTemplates.cab">This</a> is the direct link I got (may not still work).</p>
+</li>
+<li>
+<p>Extract the cab and then the zip and find the folder <code>admx</code>. It should be at <code>(extract folder)\MicrosoftEdgePolicyTemplates\windows\admx\</code></p>
+</li>
+<li>
+<p>Copy all the <code>.admx</code> files to <code>C:\Windows\PolicyDefinitions</code>. Then back in the admx folder find your language folder (e.g. <code>en-US</code>). Copy all the <code>.adml</code> files there to the corresponding language folder at <code>PolicyDefinitions</code></p>
+</li>
+<li>
+<p>Start menu &gt; type: <code>gpedit.msc</code> &gt; open as admin (or just open).</p>
+</li>
+<li>
+<p>Click: Computer Configuration &gt; Administrative Templates &gt; All settings.
+Then (menu bar) View &gt; Filter options &gt; Filter for word(s) &gt; input <code>WebWidgetAllowed</code></p>
+</li>
+<li>
+<p>Filter. Microsoft Edge &gt; Disable the setting for Computer and User</p>
+</li>
+</ol>
+<p>Note this is necessary because this user setting is not respected:</p>
+<p><img src="images/Auto-launch_search_bar.png" alt="Auto-launch_search_bar"></p>
+<p>(Source: <a href="https://www.tenforums.com/tutorials/203448-disable-microsoft-edge-desktop-search-bar-startup-windows-10-a.html">win10 forums</a>)</p>
+<p>Microsoft is a content platform. The platform is the OS. But (probably) a significant number of users are not (according to their telemetrics) viewing enough &quot;content&quot; (advertising). This is why on each new update, a new method of accessing these users (like me) is attempted.</p>
+<p>I believe the name for this new ad delivery tool is an intentional dark pattern. &quot;Search Bar&quot; is designed to fudge the search results. If you google &quot;windows search bar&quot; every single result is people who call the start menu search the &quot;search bar&quot;. I did also before this came out. So information on how to remove it is completely burried.</p>
+<p>Incidentally, while searching on this topic, I found this really nice windows 11 setup process that removes a lot of junk and installs things like the ms edge group policy settings: https://github.com/Tom4tot/Windows-11-Personal-Setup</p>
+<p>Sources:</p>
+<p><a href="https://www.alitajran.com/install-administrative-template-files-for-microsoft-office/">Installing admin templates</a> (verbose content marketing help)</p>
+<p><a href="https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies#webwidgetallowed">&quot;WebWidgetAllowed&quot; on microsoft's docs</a></p>
+<p><a href="https://www.tenforums.com/tutorials/203446-enable-disable-microsoft-edge-desktop-search-bar-windows-10-a.html">The registry method at win 10 forums</a> (the true MVPs for a long time)</p>
+</div></div></div><!-- Footer--><footer> Copyright &copy; bn-l 2023</footer><!-- Core theme JS--><script>hljs.highlightAll();</script></body></html>
