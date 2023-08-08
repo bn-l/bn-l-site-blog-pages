@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content="The selenium docs are absolutely terrible. And especially on this method on its WebDriver implementation. What is WebDrive? I'll explain it in one sentence."><meta name="author"><title>Explanation of execute_async_script in selenium - Non spam post - bn-l</title><link rel="icon" type="image/x-icon" href="https://blog.bn-l.net/assets/favicon.ico"><link href="https://blog.bn-l.net/css/styles.css" rel="stylesheet"><link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" rel="stylesheet"><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap" rel="stylesheet"><script src="/index.js" defer></script><script src="https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs" type="module" defer blocking="render"></script><mermaid class="initialize" {startOnLoad:true}></mermaid></head><body><header class="masthead"><h1 class="page-title">Explanation of execute_async_script in selenium - Non spam post</h1><p class="site-tag-line"></p></header><!-- Navigation--><nav class="nav-container"><ul class="nav-list"><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/">Home</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/about">About</a></li><li class="nav-item"><a class="nav-link" href="https://blog.bn-l.net/contact">Contact</a></li></ul></nav><div class="main-container"><div class="post"> <div class="date">Posted: 09-08-23</div><div class="toc"></div><div class="body"><p>WebDriver: A standard way of controlling browsers remotely. Created by the w3c a web standards non-profit. See: https://www.w3.org/TR/webdriver2/</p>
+<p>Various browsers implement these standards to create an API for selenium to operate its &quot;driver&quot; class.</p>
+<p>The problem is that selenium's documentation expects you have read the webdriver <a href="https://www.w3.org/TR/webdriver2/">standard</a>. And, wow, you may not have.</p>
+<p><strong>So when you see this:</strong></p>
+<p><code>execute_async_script</code>(<em>script: str</em>, *<em>args</em>)</p>
+<p>Asynchronously Executes JavaScript in the current window/frame.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Args:</th>
+<th>script: The JavaScript to execute.*args: Any applicable arguments for your JavaScript.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Usage:</td>
+<td><code>script = &quot;var callback = arguments[arguments.length - 1]; &quot; \ &quot;window.setTimeout(function(){ callback('timeout') }, 3000);&quot; driver.execute_async_script(script)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>And wonder what is going on,</strong> you are not alone. To expland this documentation:</p>
+<ul>
+<li>the <code>args</code> parameter is a commant separated set of values you can pass to the js script. These are wrapped up into a tuple and then converted into a list. In js the script will access them through a global called <code>arguments</code> as an array.</li>
+<li><strong>THIS IS IMPORTANT:</strong> The last argument added to the array is the resolve function that let's selenium know when the async function has ended. And it will pass the returned value back to selenium.</li>
+</ul>
+</div></div></div><!-- Footer--><footer> Copyright &copy; bn-l 2023</footer><!-- Core theme JS--><script>hljs.highlightAll();</script></body></html>
